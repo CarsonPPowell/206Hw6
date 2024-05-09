@@ -1,13 +1,183 @@
+<!DOCTYPE html>
 <html>
 
 <head>
-  <title>Express</title>
-  <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>MLB Player Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" type="text/css" href="site.css">
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="main.js"></script>
 </head>
 
 <body>
-  <h1>Express</h1>
-  <p>Welcome to Express</p>
+    <!-- Home Sweet Home-->
+    <main data-role="page" id="homePage">
+        <header data-role="header">
+            <h1>Baseball Stats Explorer</h1>
+        </header>
+        <div role="main" class="ui-content">
+            <div class="ui-grid-b">
+                <div class="ui-block-a"><a href="#batterSearchPage" class="ui-btn ui-corner-all">Batter Search</a></div>
+                <div class="ui-block-b"><a href="#pitcherSearchPage" class="ui-btn ui-corner-all">Pitcher Search</a>
+                </div>
+                <div class="ui-block-c"><a href="#batterComparePage" class="ui-btn ui-corner-all">Batter Compare</a>
+                </div>
+                <div class="ui-block-a"><a href="#pitcherComparePage" class="ui-btn ui-corner-all">Pitcher Compare</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- MLB Batter Search Page -->
+    <main data-role="page" id="batterSearchPage">
+        <header data-role="header" data-position="fixed">
+            <h1>MLB Batter Search</h1>
+        </header>
+        <div role="main" class="ui-content">
+            <form id="batter-search-form">
+                <div data-role="fieldcontain">
+                    <label for="batter-first-name">First Name:</label>
+                    <input type="text" name="batter-first-name" id="batter-first-name" value=""
+                        placeholder="Enter First Name">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="batter-last-name">Last Name:</label>
+                    <input type="text" name="batter-last-name" id="batter-last-name" value=""
+                        placeholder="Enter Last Name">
+                </div>
+                <button type="button" id="batter-search-button"
+                    class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left">
+                    Search
+                </button>
+            </form>
+            <div id="batterData" class="player-data-container">
+                <!-- Batter data table will be injected here -->
+            </div>
+        </div>
+        <footer data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#homePage" class="ui-btn-active ui-state-persist">Home</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+    <!-- MLB Pitcher Search Page -->
+    <main data-role="page" id="pitcherSearchPage">
+        <header data-role="header" data-position="fixed">
+            <h1>MLB Pitcher Search</h1>
+        </header>
+        <div role="main" class="ui-content">
+            <form id="pitcher-search-form">
+                <div data-role="fieldcontain">
+                    <label for="pitcher-first-name">First Name:</label>
+                    <input type="text" name="pitcher-first-name" id="pitcher-first-name" value=""
+                        placeholder="Enter First Name">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="pitcher-last-name">Last Name:</label>
+                    <input type="text" name="pitcher-last-name" id="pitcher-last-name" value=""
+                        placeholder="Enter Last Name">
+                </div>
+                <button type="button" id="pitcher-search-button"
+                    class="ui-btn ui-corner-all ui-shadow ui-icon-search ui-btn-icon-left">
+                    Search
+                </button>
+            </form>
+            <div id="pitcherData" class="player-data-container">
+                <!-- Pitcher data table will be injected here -->
+            </div>
+        </div>
+        <footer data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#homePage" class="ui-btn-active ui-state-persist">Home</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+    <!-- MLB Player Compare Pages -->
+    <!-- MLB Pitcher Compare Page -->
+    <div data-role="page" id="pitcherComparePage">
+        <div data-role="header">
+            <h1>Compare Pitchers</h1>
+        </div>
+        <div role="main" class="ui-content">
+            <!-- Pitcher 1 Input Fields -->
+            <div class="ui-field-contain">
+                <label for="pitcher-first-name1">First Name:</label>
+                <input type="text" name="pitcher-first-name1" id="pitcher-first-name1" value="">
+                <label for="pitcher-last-name1">Last Name:</label>
+                <input type="text" name="pitcher-last-name1" id="pitcher-last-name1" value="">
+                <label for="pitcher-year1">Year:</label>
+                <input type="number" name="pitcher-year1" id="pitcher-year1" value="">
+            </div>
+            <!-- Pitcher 2 Input Fields -->
+            <div class="ui-field-contain">
+                <label for="pitcher-first-name2">First Name:</label>
+                <input type="text" name="pitcher-first-name2" id="pitcher-first-name2" value="">
+                <label for="pitcher-last-name2">Last Name:</label>
+                <input type="text" name="pitcher-last-name2" id="pitcher-last-name2" value="">
+                <label for="pitcher-year2">Year:</label>
+                <input type="number" name="pitcher-year2" id="pitcher-year2" value="">
+            </div>
+            
+            <!-- Compare Button -->
+            <button id="pitcher-compare-button" class="ui-btn ui-btn-b">Compare</button>
+            <!-- Comparison Results -->
+            <div id="pitcherComparisonResults">
+                <div id="pitcher1Data"></div>
+                <div id="pitcher2Data"></div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#homePage" class="ui-btn-active ui-state-persist">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <main data-role="page" id="batterComparePage">
+        <header data-role="header">
+            <h1>Compare Batters</h1>
+        </header>
+        <div role="main" class="ui-content">
+            <!-- Player 1 Input Fields -->
+            <div class="ui-field-contain">
+                <label for="batter-first-name1">First Name:</label>
+                <input type="text" name="batter-first-name1" id="batter-first-name1" value="">
+                <label for="batter-last-name1">Last Name:</label>
+                <input type="text" name="batter-last-name1" id="batter-last-name1" value="">
+                <label for="batter-year1">Year:</label>
+                <input type="number" name="batter-year1" id="batter-year1" value="">
+            </div>
+            <!-- Player 2 Input Fields -->
+            <div class="ui-field-contain">
+                <label for="batter-first-name2">First Name:</label>
+                <input type="text" name="batter-first-name2" id="batter-first-name2" value="">
+                <label for="batter-last-name2">Last Name:</label>
+                <input type="text" name="batter-last-name2" id="batter-last-name2" value="">
+                <label for="batter-year2">Year:</label>
+                <input type="number" name="batter-year2" id="batter-year2" value="">
+            </div>
+            <!-- Compare Button -->
+            <button id="batter-compare-button" class="ui-btn ui-btn-b">Compare</button>
+            <!-- Comparison Results -->
+            <div id="comparisonResults">
+                <div id="player1Data"></div>
+                <div id="player2Data"></div>
+            </div>
+            <footer data-role="footer" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#homePage" class="ui-btn-active ui-state-persist">Home</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </main>
 </body>
 
 </html>

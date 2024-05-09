@@ -1,0 +1,30 @@
+ui-content {
+    text-align: center;
+}
+
+.centered-content {
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+/* Custom styling for the table */
+#player-stats-table th {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+}
+
+#player-stats-table td, #player-stats-table th {
+    padding: .8em;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Zebra striping for rows */
+#player-stats-table tbody tr:nth-child(odd) {
+    background-color: #eeeeee;
+}
